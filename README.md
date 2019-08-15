@@ -12,3 +12,6 @@ Usage:
 
 Help:
 It will be helpful for people who want to use proxy systemwide/globally in ubuntu with pre-authentication.
+
+Working: apt,terminal,software center, wget , and all ubuntu apps 
+Note: Browsers use ubuntu settings proxy. To use proxy in browsers like chrome/firefox , also set the proxy in your ubuntu settings.
