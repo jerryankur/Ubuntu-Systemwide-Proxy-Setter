@@ -1,5 +1,11 @@
 #This code is written by Priyanshu Dwivedi, Indian Institute of Information Technology, Design and Manufacturing, Jabalpur
 #Source: https://github.com/coderpd/Ubuntu-Systemwide-Proxy-Setter
+import sys
+import re
+import fileinput
+import os
+if os.geteuid() != 0:
+    os.execvp("sudo", ["sudo"] + ["python"] + sys.argv)
 print("=======================================================================================")
 print("WARNING: This script will touch system variables proceed with your own risk!")
 print("Note: Leave the username and password empty if your proxy doesn't need credentials")
@@ -12,13 +18,6 @@ print("2) Press 2 to remove proxy from system variables")
 print("0) Press 0 to exit")
 inp=input("\tInput: ")
 if inp==1:
-    print("importing system")
-    import sys
-    import re
-    import fileinput
-    print("importing os")
-    import os
-
     proxy=raw_input("\n\tHost: ")
     port=raw_input("\tPort: ")
     user=raw_input("\tUsername: ")
