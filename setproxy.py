@@ -6,6 +6,15 @@ import fileinput
 import os
 if os.geteuid() != 0:
     os.execvp("sudo", ["sudo"] + ["python"] + sys.argv)
+def toHex(s):
+    lst = []
+    for ch in s:
+        hv = hex(ord(ch)).replace('0x', '')
+        if len(hv) == 1:
+            hv = '0'+hv
+        lst.append('%')
+        lst.append(hv)
+    return reduce(lambda x,y:x+y, lst)
 print("=======================================================================================")
 print("WARNING: This script will touch system variables proceed with your own risk!")
 print("Note: Leave the username and password empty if your proxy doesn't need credentials")
@@ -20,11 +29,13 @@ inp=input("\tInput: ")
 if inp==1:
     proxy=raw_input("\n\tHost: ")
     port=raw_input("\tPort: ")
-    user=raw_input("\tUsername: ")
-    password=raw_input("\tPassword: ")
+    user_string=raw_input("\tUsername: ")
+    password_string=raw_input("\tPassword: ")
     print("\ntouching apt configurations")
     os.system('sudo touch /etc/apt/apt.conf')
-    if len(user)>0:
+    if len(user_string)>0:
+        user=toHex(user_string)
+        password=toHex(password_string)
         flag = 0
         print("modifying environment variables")
         for line in fileinput.input("/etc/environment", inplace=1):
