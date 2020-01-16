@@ -25,7 +25,7 @@ print("\n\t\t\tPROXY SETTER")
 print("\n1) Press 1 to set proxy to system variables")
 print("2) Press 2 to remove proxy from system variables")
 print("0) Press 0 to exit")
-inp=input("\tInput: ")
+inp=raw_input("\tInput: ")
 if inp==1:
     proxy=raw_input("\n\tHost: ")
     port=raw_input("\tPort: ")
